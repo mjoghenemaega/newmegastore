@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome | {% endblock %}
+
+{% block content %}
+
+       
+        <section class="section new" id="new">
+            <div class="new__center container">
+                <div class="title">
+                    <h1>New Products</h1>
+                </div> 
+                <div class="product__center">
+                    {% for product in products %}
+
+                    <div class="product">
+                        <div class="product__header">
+                            <a href="{% url 'product_detail'   product.category.slug    product.slug %}"><img src="{{ product.thumbnail.url }}" alt="picgg"></a>
+                            <span class="flex__center">
+                                <svg>
+                                    <use xlink:href="./images/sprite.svg#icon-camera"></use>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="product__footer">
+                            <h2>{{product.title}}</h2>
+                            <div class="rating">
+                                <span>
+                                    <svg>
+                                        <use xlink:href="./images/sprite.svg#icon-star-full"></use>
+                                    </svg>
+                                </span>
+                                <span>
+                                    <svg>
+                                        <use xlink:href="./images/sprite.svg#icon-star-full"></use>
+                                    </svg>
+                                </span>
+                                <span>
+                                    <svg>
+                                        <use xlink:href="./images/sprite.svg#icon-star-full"></use>
+                                    </svg>
+                                </span>
+                                <span>
+                                    <svg>
+                                        <use xlink:href="./images/sprite.svg#icon-star-full"></use>
+                                    </svg>
+                                </span>
+                                <span>
+                                    <svg>
+                                        <use xlink:href="./images/sprite.svg#icon-star-empty"></use>
+                                    </svg>
+                                </span>
+                            </div>
+                            <h4 class="price">&#8358;{{product.price|floatformat:2}}</h4>
+                        </div>
+                        <a href="{% url 'product_detail'   product.category.slug    product.slug %}"><button type="submit" class="btn btn-outline-success my-2 my-sm-0" class="product__btn">View</button></a>
+
+                    </div> 
+                    {% endfor %} 
+                </div>
+            </div>
+        </section>
+        
+{% endblock %}
