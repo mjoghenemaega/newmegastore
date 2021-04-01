@@ -1,0 +1,334 @@
+body{
+    background-color: lightyellow;
+}
+
+.checked {
+  color: orange;
+}
+
+/* New Product */
+
+.section {
+    padding: 5rem 0;
+}
+
+.new {
+    margin-top: 10rem;
+}
+
+.product__footer svg {
+    width: 1.6rem;
+    height: 1.6rem;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 7rem;
+}
+
+.title h1 {
+    position: relative;
+    display: inline-block;
+    font-size: 3.5rem;
+}
+
+.title h1::after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    bottom: -60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: .5rem;
+    width: 40%;
+    background-color: var(--default);
+}
+
+.product__center {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(auto, 1fr));
+    gap: 2rem 3rem;
+    justify-content: center;
+}
+
+.product__header svg {
+    width: 3rem;
+    height: 3rem;
+}
+
+.product__header span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: var(--primaryColor);
+    border-radius: 50%;
+    padding: 1rem;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    z-index: 6;
+    opacity: 1;
+    transition: all 300ms ease-in-out;
+}
+
+.product {
+    text-align: center;
+    background-color: var(--primaryColor);
+}
+
+.product__header {
+    position: relative;
+    padding: .5rem;
+}
+
+.product__header {
+    height: 20rem;
+}
+
+.product__header img {
+    object-fit: contain;
+}
+
+.product__header::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, .7);
+    visibility: hidden;
+    opacity: 0;
+    transition: all 300ms ease-in-out;
+}
+
+.product:hover .product__header::after,
+.product:hover .product__header span {
+    visibility: visible;
+    opacity: 1;
+}
+
+.product__footer {
+    padding: .5rem 0;
+}
+
+.product__footer h2 {
+    margin-bottom: 1rem;
+}
+
+.product__footer h4 {
+    margin: 1rem 0;
+    font-size: 2rem;
+    font-weight: 700;
+
+}
+
+.myAlert-top{
+    position: fixed;
+    top: 5px; 
+    left:2%;
+    width: 96%;
+}
+
+.myAlert-bottom{
+    position: fixed;
+    bottom: 5px;
+    left:2%;
+    width: 96%;
+}
+
+div.fullscreen {
+  position: absolute;
+  width:100%; 
+  height:960px; 
+  top: 0; 
+  left: 0; 
+  background-color: lightblue;
+}
+
+.alert{
+    display: none;
+}
+@media only screen and (max-width: 996px) {
+    .product__center {
+        grid-template-columns: repeat(3, minmax(auto, 25rem));
+        gap: 2rem 2rem;
+    }
+
+    .product__footer h2 {
+        font-size: 1.8rem;
+    }
+
+    .product__footer h4 {
+        font-size: 1.6rem;
+    }
+
+    .product__header {
+        height: 13rem;
+    }
+}
+
+@media only screen and (max-width: 568px) {
+    .product__center {
+        grid-template-columns: repeat(2, minmax(auto, 20rem));
+    }
+
+    .product__header {
+        height: 10rem;
+    }
+}
+
+
+
+
+
+
+
+
+.half, .half .container > .row {
+  height: 100vh;
+  min-height: 700px; }
+
+.half .contents {
+  background: #f6f7fc; }
+
+.half .bg {
+  width: 25%; }
+  @media (max-width: 767.98px) {
+    .half .bg {
+      width: 100%;
+      height: 200px; } }
+
+.half .contents {
+  width: 75%; }
+  @media (max-width: 767.98px) {
+    .half .contents {
+      width: 100%; } }
+
+.half .contents .form-control, .half .bg .form-control {
+  border: none;
+  border-radius: 4px;
+  height: 54px;
+  background: #efefef; }
+  .half .contents .form-control:active, .half .contents .form-control:focus, .half .bg .form-control:active, .half .bg .form-control:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+
+.half .bg {
+  background-size: cover;
+  background-position: center; }
+
+.half a {
+  color: #888;
+  text-decoration: underline; }
+
+.half .btn {
+  padding-left: 30px;
+  padding-right: 30px; }
+
+.half .forgot-pass {
+  position: relative;
+  top: 2px;
+  font-size: 14px; }
+
+.form-block {
+  background: #fff;
+  padding: 40px;
+  max-width: 500px;
+  -webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2); }
+  @media (max-width: 767.98px) {
+    .form-block {
+      padding: 25px; } }
+
+.control {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 14px; }
+  .control .caption {
+    position: relative;
+    top: .2rem;
+    color: #888; }
+
+.control input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0; }
+
+.control__indicator {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background: #e6e6e6;
+  border-radius: 4px; }
+
+.control--radio .control__indicator {
+  border-radius: 50%; }
+
+.control:hover input ~ .control__indicator,
+.control input:focus ~ .control__indicator {
+  background: #ccc; }
+
+.control input:checked ~ .control__indicator {
+  background: #fb771a; }
+
+.control:hover input:not([disabled]):checked ~ .control__indicator,
+.control input:checked:focus ~ .control__indicator {
+  background: #fb8633; }
+
+.control input:disabled ~ .control__indicator {
+  background: #e6e6e6;
+  opacity: 0.9;
+  pointer-events: none; }
+
+.control__indicator:after {
+  font-family: 'icomoon';
+  content: '\e5ca';
+  position: absolute;
+  display: none;
+  font-size: 16px;
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease; }
+
+.control input:checked ~ .control__indicator:after {
+  display: block;
+  color: #fff; }
+
+.control--checkbox .control__indicator:after {
+  top: 50%;
+  left: 50%;
+  margin-top: -1px;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+
+.control--checkbox input:disabled ~ .control__indicator:after {
+  border-color: #7b7b7b; }
+
+.control--checkbox input:disabled:checked ~ .control__indicator {
+  background-color: #7e0cf5;
+  opacity: .2; }
+
+.btn {
+  text-decoration: none !important; }
+  .btn.btn-facebook {
+    display: block;
+    background: #3b5998;
+    color: #fff; }
+  .btn.btn-google {
+    background: #ea4335;
+    color: #fff; }
+
+
+
+
+
+
+

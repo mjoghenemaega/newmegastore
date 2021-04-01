@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}myaccount | {% endblock %}
+
+
+{% block content %}    
+<h1 class="title">My Account </h1>
+
+<a href="{% url 'logout' %}"><button class="btn btn-info my-2 my-sm-0" type="submit"><b>Logout</b></button></a>
+<hr>
+<hr>
+            <h2 class="subtitle">
+              Account Details
+            </h2>
+            <p><b>Name:</b>{{request.user.get_full_name}}</p>
+            <p><b>Email:</b>{{request.user.email}}</p>
+
+            <hr>
+
+            <h2 class="subtitle">
+              My Orders</h2>
+            {% for order in request.user.orders.all %}
+            <article class=" message btn-info">
+            <div class="message-header">
+              <p>{{ order.created_at }}</p>
+
+              <p><b>Status:</b>{{ order.status}}</p>
+              
+            </div> 
+            <div class="message-body ">
+              <table class="table">
+                <thead><tr>
+                  <td><b>Title</b></td>
+                  <td><b>Quantity</b></td>
+                  <td><b>Price</b></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in order.items.all %}
+                    <tr>
+                      <td>{{ item.product.title}}</td>
+                      <td>{{ item.quantity}}</td>
+                  <td>{{ item.price}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td>Total</td>
+                    <td>{{ order.get_total_quantity}}</td>
+                    <td>{{ order.paid_amount}}</td>
+
+                  </tr>
+                </tfoot>
+              </table>
+            </div>       
+            </article>
+            {% empty %}
+              <p>You have not made any orders yet! </p>
+            {% endfor %}
+
+{% endblock  %} 
