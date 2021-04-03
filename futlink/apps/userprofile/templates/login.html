@@ -5,10 +5,10 @@
 {% block content %}
 
 <div class="d-md-flex half">
-    <div class="bg" style="background-color: green";></div>
+    <div class="bg" style="background: url('/static/images/bg2.jpg');  background-size: cover;"></div>
     <div class="contents">
 
-      <div class="container">
+      <div class="container" style="background: url('/static/images/bg.jpg');  background-size: cover;">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-12">
             <div class="form-block mx-auto">
@@ -17,12 +17,35 @@
               </div>
               <form  method="POST" action=".">
               	{% csrf_token %}
-   
-                <div class="btn btn-block >
-                	{{ form.as_p }}
-                	 </div>
-                
-                <div class="d-sm-flex mb-5 align-items-center">
+
+
+
+
+
+            <input type="hidden" name="next" value="{{ next }}">
+
+            <div class="form">
+                <label><b>Username</b></label>
+
+                <div class="form">
+                    <input type="text" class="input btn btn-block py-2" name="username" id="id_username" placeholder="Enter a username">
+                </div>
+            </div>
+
+            <div class="form">
+                <label><b>Password</b></label>
+
+                <div class="form">
+                    <input type="password" class="input btn btn-block py-2 " name="password" id="id_password" placeholder=".........">
+                </div>
+            </div>
+
+            {% if form.errors %}
+                <div class="notification btn-danger">
+                    Your username and password didn't match! Please try again!
+                </div>
+            {% endif %}
+                  <div class="d-sm-flex mb-5 align-items-center">
                   <label class="control control--checkbox mb-3 mb-sm-0"><span class="caption">Remember me</span>
                     <input type="checkbox" checked="checked"/>
                     <div class="control__indicator"></div>

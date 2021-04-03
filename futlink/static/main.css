@@ -1,12 +1,20 @@
 body{
-    background-color: lightyellow;
-}
+      }
 
 .checked {
   color: orange;
 }
 
 /* New Product */
+
+form .helptext {
+    font-size: 12px;
+    color: #ccc;
+}
+
+form ul {
+    display: none;
+} 
 
 .section {
     padding: 5rem 0;

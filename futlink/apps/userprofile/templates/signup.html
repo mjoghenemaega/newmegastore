@@ -3,19 +3,29 @@
 
 
 {% block content %}
+<div class="d-md-flex half">
+    <div class="bg" style="background: url('/static/images/bg2.jpg'); background-size: cover;"></div>
+    <div class="contents">
 
-<h1 class="title">Sign Up</h1>
-<form method="POST" action=".">
-	{% csrf_token %}
-	{{ form.as_p }}
+      <div class="container" style="background: url('/static/images/bg.jpg');  background-size: cover;">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-12">
+            <div class="form-block mx-auto">
+              <div class="text-center mb-5">
+                <h3 class="text-uppercase">Register<strong> New Account</strong></h3>
+              </div>
+              <form  method="POST" action="." class="input btn btn-block py-2" >
+              	{% csrf_token %}
+            {{ form.as_p}}
+      
+                <input type="submit" value="Sign Up" class="btn btn-block py-2 btn-primary">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-	<div class="field">
-		<div class="control">
-			<button class="btn-outline-success">
-				Sign Up
-			</button>
-		</div>
-	</div>
-</form>
-
+    
+  </div>
 {% endblock %}
