@@ -6,7 +6,10 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.auth import views
 
 from apps.cart.views import cart_detail
+from apps.cart.webhook import webhook
+
 from apps.core.views import frontpage, contact, about,order_confirmation
+from apps.order.views import admin_order_pdf
 from apps.store.views import product_detail, category_detail, search
 from apps.userprofile.views import signup,myaccount
 from apps.coupon.api import api_can_use
@@ -23,7 +26,9 @@ urlpatterns = [
     path('cart/', cart_detail, name='cart'),
     path('contact/', contact, name='contact'),
     path('about/', about, name='about'),
-    path('admin/', admin.site.urls), 
+    path('admin/', admin.site.urls),
+    path('admin/admin_order_pdf/<int:order_id>/', admin_order_pdf, name='admin_order_pdf'),
+ 
 
     #auth
     path('myaccount/', myaccount, name='myaccount'),
