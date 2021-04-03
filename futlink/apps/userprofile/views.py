@@ -1,25 +1,30 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, get_object_or_404, redirect
+
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 
-from .forms import SignupForm
-
+from .forms import SignUpForm, UserprofileForm
 
 def signup(request):
-	if request.method =='POST':
-		form = SignupForm(request.POST)
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        userprofileform = UserprofileForm(request.POST)
 
-		if form.is_valid():
-			user = form.save()
+        if form.is_valid() and userprofileform.is_valid():
+            user = form.save()
 
-			login(request, user)
+            userprofile = userprofileform.save(commit=False)
+            userprofile.user = user
+            userprofile.save()
 
-			return redirect('frontpage')
+            login(request, user)
 
-	else:
-		form = SignupForm()
+            return redirect('frontpage')
+    else:
+        form = SignUpForm()
+        userprofileform = UserprofileForm()
 
-	return render(request, 'signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form, 'userprofileform': userprofileform})
 	     	
 @login_required
 def myaccount(request):

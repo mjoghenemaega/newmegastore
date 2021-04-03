@@ -91,6 +91,14 @@
                 </div>
             </div>
             <div class="form">
+                <label><b>Phone</b></label>
+
+                <div class="form">
+                    <input type="text" class="input btn btn-block py-2 btn-light"  name="phone" v-model="phone">
+                </div>
+            </div>
+
+            <div class="form">
                 <label><b>Address</b></label>
 
                 <div class="form">
@@ -144,13 +152,45 @@
                 first_name: '{{first_name}}',
                 last_name: '{{last_name}}',
                 email: '{{email}}',
-                address: '',
-                zipcode: '',
-                place: '',
+                address: '{{ address }}',
+                zipcode: '{{ zipcode }}',
+                place: '{{ place }}',
+                phone: '{{ phone }}',
                 products: [{{ productsstring|safe }}],
                 coupon_value: 0,
                 coupon_code: '',
-            }
+            };
+
+            this.errors =[];
+                if (data.phone === '') {
+                    this.errors.push('Phone is empty');
+                }
+                if (data.place === '') {
+                    this.errors.push('place is empty');
+                }
+                if (data.address === '') {
+                    this.errors.push('address is empty');
+                }
+                if (data.zipcode === '') {
+                    this.errors.push('zipcode is empty');
+                }
+                if (data.email === '') {
+                    this.errors.push('email is empty');
+                }
+                if (data.first_name === '') {
+                    this.errors.push('first_name is empty');
+                }
+                if (data.last_name === '') {
+                    this.errors.push('last_name is empty');
+                }
+
+
+
+
+
+
+
+
         },
         computed: {
             numItems: function() {
@@ -199,7 +239,8 @@
                     'email': this.email,
                     'address': this.address,
                     'zipcode': this.zipcode,
-                    'place': this.place
+                    'place': this.place,
+                    'phone': this.phone,
                 };
 
                 fetch('/api/checkout/', {

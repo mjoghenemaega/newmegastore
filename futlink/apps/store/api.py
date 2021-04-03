@@ -21,8 +21,10 @@ def api_checkout(request):
     address = data['address']
     zipcode = data['zipcode']
     place = data['place']
+    place = data['place']
+    phone = data['phone']
     
-    orderid = checkout(request, first_name, last_name, email, address, zipcode, place)
+    orderid = checkout(request, first_name, last_name, email, address, zipcode, place, phone)
 
     paid = True
 

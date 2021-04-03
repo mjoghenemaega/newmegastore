@@ -45,7 +45,8 @@
         <div class="reviews-wrapper">
             {% for review in product.reviews.all %}
                 <div class="notification space-below">
-                  <p><b>@</b></p>
+                  <p><b>@</b>user</p>
+
               
                     <p>
                         <strong>Date: </strong>{{ review.date_added|date:"Y-m-d" }},

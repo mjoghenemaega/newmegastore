@@ -13,6 +13,10 @@
             </h2>
             <p><b>Name:</b>{{request.user.get_full_name}}</p>
             <p><b>Email:</b>{{request.user.email}}</p>
+            <p><strong>Address: </strong>{{ request.user.userprofile.address }}</p>
+    <p><strong>Zip and place: </strong>{{ request.user.userprofile.zipcode }} {{ request.user.userprofile.place }}</p>
+    <p><strong>Phone: </strong>{{ request.user.userprofile.phone }}</p>
+
 
             <hr>
 
