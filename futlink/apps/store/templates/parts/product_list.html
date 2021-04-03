@@ -1,0 +1,35 @@
+
+       
+        <section class="section new" id="new">
+            <div class="new__center container"> 
+                <div class="product__center">
+                    {%  for p in list_products  %}
+
+                    <div class="product">
+                        <div class="product__header">
+                            <img src="{{ p.thumbnail.url }}" alt="{{p.title}}.jpg">
+                            <span class="flex__center">
+                                <svg>
+                                    <use xlink:href="./images/sprite.svg#icon-camera"></use>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="product__footer">
+                            <a href="{% url 'product_detail'   p.category.slug    p.slug %}"><h2>{{p.title}}</h2></a>
+                            <div>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        
+                            <h4 class="price">&#8358;{{p.price|floatformat:2}}</h4>
+                        </div>
+                        <a href="{% url 'product_detail'   p.category.slug    p.slug %}"><button type="submit" class="btn btn-outline-success my-2 my-sm-0" class="product__btn">View</button></a>
+
+                    </div> 
+                    {% endfor %} 
+                </div>
+            </div>
+        </section>

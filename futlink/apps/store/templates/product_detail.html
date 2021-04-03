@@ -2,6 +2,9 @@
 
 {% block title %}{{ product.title }} | {% endblock %}
 {% block content %}
+<div class="col-md-12">
+
+
     <div id="productapp">
 
          <img :src=" mainImage ">
@@ -14,10 +17,10 @@
 
          <div style="clear: both;" ></div>       
         <hr>
-        <h1 class="titl"> {{ product.title }} </h1>
-        <h2 class="subtitle">&#8358;{{product.price|floatformat:2}}</h2>
+        <h1 class="title"> {{ product.title }} </h1>
+        <h2 class="subtitle">&#8358;{{product.price|floatformat:2}},  Stars: {{ product.get_rating|floatformat:1 }}</h2>
 
-        {% if product.description %}
+        {% if product.description %} 
              <p>{{ product.description }}</p>
         {% endif %}
 
@@ -27,9 +30,90 @@
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   <strong>Yeah!</strong>Your product has been added to Cart!
 </div>
+ <h2 class="subtitle">Related products</h2>
 
-
+        {% with related_products as list_products %}
+            {% include 'parts/product_list.html' %}
+        {% endwith %}
     </div>
+    <hr>
+    <div class="col-md-12">
+
+    <div class="btn btn-block py-2"><h2 class="subtitle">Reviews</h2>
+</div>
+           <div class="btn btn-block alert alert-info py-2" style="margin-bottom: 50px; text-align: left;">
+        <div class="reviews-wrapper">
+            {% for review in product.reviews.all %}
+                <div class="notification space-below">
+                  <p><b>@</b></p>
+              
+                    <p>
+                        <strong>Date: </strong>{{ review.date_added|date:"Y-m-d" }},
+                        <strong>Stars: </strong>{{ review.stars }}
+                    </p>
+
+                    {{ review.content }}
+                    <br>
+                    <br>
+                </div>
+            {% empty %}
+                <div class="btn btn-block alert alert-info py-2">
+                    No reviews yet...
+                </div>
+            {% endfor %}
+        </div>
+      </div>
+<div class="btn btn-block alert alert-info py-2" style="margin-bottom: 50px; text-align: left;">
+        <div class="notification space-below">
+            {% if request.user.is_authenticated %}
+                <form method="post" action=".">
+                    {% csrf_token %}
+
+                    <div class="form">
+                        <label><b>Rate this product</b></label>
+                        <div>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        
+
+                        <div clas="form-block">
+                            <div class="select">
+                                <select name="stars">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3" selected>3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <label><strong>Write a review:</strong></label>
+                        <br>
+
+                        
+                            <textarea class="textarea" name="content" style="border: 2px solid lightblue;
+                            width: 50%; height: 200px;" ></textarea>
+                        
+                    </div>
+
+                   <button  class="btn btn-info my-2 my-sm-0" type="submit" class="product__btn"   onclick="myAlertBottom()">Submit</button>
+                 </div>
+
+                </form>
+            {% else %}<br>
+                <p><strong>Please <a href="{% url 'login'%} ">sign in </a>to add review!</strong></p>
+            {% endif %}
+        </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
@@ -39,6 +123,7 @@
         delimeters: ['[[', ']]'],
         store: store,
         data () {
+
             return {
                 showMessage: false,
                 mainImage: '{{product.image.url}}',

@@ -2,6 +2,7 @@ from io import BytesIO
 from django.core.files import File
 from django.db import models
 from PIL import Image
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     title = models.CharField(max_length=255)
@@ -20,6 +21,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
+    parent = models.ForeignKey('self', related_name='variants', on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
     description = models.TextField(blank=True, null=True)
@@ -41,7 +43,7 @@ class Product(models.Model):
         self.thumbnail = self.make_thumbnail(self.image)
 
         super().save(*args, **kwargs)
-
+    
     def get_absolute_url(self):
         return '/%s/%s/' %(self.category.slug, self.slug)   
         
@@ -56,6 +58,12 @@ class Product(models.Model):
         thumbnail = File(thumb_io, name=image.name)
 
         return thumbnail
+
+        def get_rating(self):
+            total = sum(int(review['stars']) for review in self.reviews.values())
+
+        return total / self.reviews.count()
+
 
 class ProductImage(models.Model):
     Product= models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
@@ -83,4 +91,13 @@ class ProductImage(models.Model):
 
         super().save(*args, **kwargs)
     
+
+class ProductReview(models.Model):
+    product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='reviews', on_delete=models.CASCADE)
+
+    content = models.TextField(blank=True, null=True)
+    stars = models.IntegerField()
+
+    date_added = models.DateTimeField(auto_now_add=True)
 
