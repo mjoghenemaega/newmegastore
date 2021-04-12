@@ -3,8 +3,8 @@
 {% block title %}Cart | {% endblock %}
 
 {% block content %}
-
-    <div id="cartapp">
+<!--
+<div id="cartapp">
         <h1 class="title">Cart</h1>
 
         {% if cart %}
@@ -44,6 +44,7 @@
                             </tr>
                         </tfoot>  
                     </table>
+            </div>
                     <hr>
                     <br>
                     <input type="hidden" v-model="coupon_value"><br>
@@ -54,14 +55,13 @@
                 
                     <button class="btn my-2 my-sm-0  btn-outline-success" @click="applyCoupon()">Apply</button>
                     <hr>
-                </div>
 
                 {% if not request.user.is_authenticated %}
                 <p>continue as guest or <a href="{% url 'login'%} ">login</a> / <a href="{% url 'signup'%} ">sign up</a>
                     <hr>
                     {% endif %}
 
-        <div class="d-md-flex ">
+    <div class="d-md-flex ">
     <div class="contents">
 
       <div class="container">
@@ -69,65 +69,60 @@
           <div class="col-md-12">
             <div class="form-block mx-auto">
 
-         <form v-on:submit.prevent="submitForm()">
-            <div class="form">
-                <label><b>First-name</b></label>
+                     <form v-on:submit.prevent="submitForm()">
+                                <div class="form">
+                                    <label><b>First-name</b></label>
 
-                <div class="form">
-                    <input type="text" class="input btn btn-block py-2 btn-light" name="first_name" v-model="first_name">
-                </div>
-            <div class="form">
-                <label><b>Last-name</b></label>
+                                    <div class="form">
+                                        <input type="text" class="input btn btn-block py-2 btn-light" name="first_name" v-model="first_name">
+                                    </div>
+                                <div class="form">
+                                    <label><b>Last-name</b></label>
 
-                <div class="form">
-                    <input type="text" class="input btn btn-block py-2 btn-light" name="last_name" v-model="last_name">
-                </div>
+                                    <div class="form">
+                                        <input type="text" class="input btn btn-block py-2 btn-light" name="last_name" v-model="last_name">
+                                    </div>
+                                </div>
+                                <div class="form">
+                                    <label><b>E-mail</b></label>
+
+                                    <div class="form">
+                                        <input type="email" class="input btn btn-block py-2 btn-light"  name="email" v-model="email">
+                                    </div>
+                                </div>
+                                <div class="form">
+                                    <label><b>Phone</b></label>
+
+                                    <div class="form">
+                                        <input type="text" class="input btn btn-block py-2 btn-light"  name="phone" v-model="phone">
+                                    </div>
+                                </div>
+
+                                <div class="form">
+                                    <label><b>Address</b></label>
+
+                                    <div class="form">
+                                        <input type="text" class="input btn btn-block py-2 btn-light" name="address" v-model="address" >
+                                    </div>
+                                </div>
+                                <div class="form">
+                                    <label><b>Place</b></label>
+
+                                    <div class="form">
+                                        <input type="text" class="input btn btn-block py-2 btn-light"  name="place" v-model="place" >
+                                    </div>
+                                </div>
+                                <div class="form">
+                                    <label><b>Zip code</b></label>
+
+                                    <div class="form">
+                                        <input type="text" class="input btn btn-block py-2 btn-light" name="zipcode" v-model="zipcode">
+                                    </div>
+                                </div>
+                                <input type="submit" value="Check out" class="btn btn-block py-2 btn-success" class="product__btn">
+    
+                        </form>
             </div>
-            <div class="form">
-                <label><b>E-mail</b></label>
-
-                <div class="form">
-                    <input type="email" class="input btn btn-block py-2 btn-light"  name="email" v-model="email">
-                </div>
-            </div>
-            <div class="form">
-                <label><b>Phone</b></label>
-
-                <div class="form">
-                    <input type="text" class="input btn btn-block py-2 btn-light"  name="phone" v-model="phone">
-                </div>
-            </div>
-
-            <div class="form">
-                <label><b>Address</b></label>
-
-                <div class="form">
-                    <input type="text" class="input btn btn-block py-2 btn-light" name="address" v-model="address" >
-                </div>
-            </div>
-            <div class="form">
-                <label><b>Place</b></label>
-
-                <div class="form">
-                    <input type="text" class="input btn btn-block py-2 btn-light"  name="place" v-model="place" >
-                </div>
-            </div>
-            <div class="form">
-                <label><b>Zip code</b></label>
-
-                <div class="form">
-                    <input type="text" class="input btn btn-block py-2 btn-light" name="zipcode" v-model="zipcode">
-                </div>
-            </div>
-            <input type="submit" value="Check out" class="btn btn-block py-2 btn-success" class="product__btn">
- 
-                    <div class="field">
-                        <div class="control">
-                            <input type="submit" value="Check out" class="btn btn-block py-2 btn-success" class="product__btn">
-                        </div>
-                    </div>
-                </form>
-                </div>
              </div>
                 </div>
                 </div>
@@ -138,7 +133,163 @@
         {% else %}
             <p>Your cart is empty!</p>
         {% endif %}
-    </div>
+</div>   
+</div>
+
+
+-->
+
+<section class="shop-account  section"  id="cartapp">
+        <div id="wrapper" class="wide-wrap">
+        
+            <div class="heading-container">
+                <div class="container heading-standar">
+                    <div class="page-breadcrumb">
+                        <ul class="breadcrumb">
+                            <li><span><a href="#" class="home"><span>Home</span></a></span></li>
+                            <li><span>Cart</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content-container">
+                <div class="container">
+                    <div class="row" >
+                        <div class="col-md-12 main-wrap">
+                            <div class="main-content">
+                                <div class="shop" id="cartapp">
+                                    <form>
+                                         {% if cart %}
+                                           <div v-if="products.length > 0">
+                                        <table class="table shop_table cart">
+                                            <thead>
+                                                <tr>
+                                                    <th class="product-remove hidden-xs">&nbsp;</th>
+                                                    <th class="product-thumbnail hidden-xs">&nbsp;</th>
+                                                    <th class="product-name">Product</th>
+                                                    <th class="product-price text-center">Price</th>
+                                                    <th class="product-quantity text-center">Quantity</th>
+                                                    <th class="product-subtotal text-center hidden-xs">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="cart_item"  v-for="product in products">
+                                                    <td class="product-remove hidden-xs" class="product__btn" @click="removeFromCart(product.id)">
+                                                        <a href="#" class="remove" title="Remove this item">&times;</a>
+                                                    </td>
+                                                    <td class="product-thumbnail hidden-xs">
+                                                        <a href="#">
+                                                            <img :src="[[ product.thumbnail ]]" alt="{{product.title}}.jpg" width="100" height="150" />
+                                                        </a>
+                                                    </td>
+                                                    <td class="product-name">
+                                                        <a :href="product.url">[[ product.title ]]</a>
+                                                        <dl class="variation">
+                                                            <dt class="variation-Color">Color:</dt>
+                                                            <dd class="variation-Color"><p>Green</p></dd>
+                                                            <dt class="variation-Size">Size:</dt>
+                                                            <dd class="variation-Size"><p>Extra Large</p></dd>
+                                                        </dl>
+                                                    </td>
+                                                    <td class="product-price text-center">
+                                                        <span class="amount">&#8358;[[ product.price ]]</span>
+                                                    </td>
+                                                    <td class="product-quantity text-center">
+                                                        <div class="quantity">
+                                                            <span class="btn-sm my-2 my-sm-0  btn-danger product__btn" @click="incrementQuantity(product.id, product.quantity, product.price)"> <i class='bx bx-up-arrow-alt scrolldoun__icon'></i></span>
+                                                            <span style="padding-left: 2px; padding-right: 2px;"><b>[[ product.quantity ]] </b></span>
+                                                            <span class="btn-sm my-2 my-sm-0  btn-danger product__btn" @click="decrementQuantity(product.id, product.quantity, product.price)"> <i class='bx bx-down-arrow-alt scrolldown__icon'></i></span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="product-subtotal hidden-xs text-center">
+                                                        <span class="amount">&#8358;[[ product.total_price ]]</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" class="actions">
+                                                        <div class="coupon">
+                                                            <label for="coupon_code">Coupon:</label> 
+                                                            <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Coupon code"/> 
+                                                            <input type="submit" class="button" name="apply_coupon" value="Apply Coupon"/>
+                                                        </div>
+                                                        <input type="submit" class="button update-cart-button" name="update_cart" @click="applyCoupon()" value="Update Cart"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                    <div class="cart-collaterals ">
+                                        <div class="cart_totals  ">
+                                            <h2>Cart Totals</h2>
+                                            <table>
+                                                <tr class="cart-subtotal">
+                                                    <th>Subtotal</th>
+                                                    <td><span class="amount">&#8358;[[ totalCost ]]</span></td>
+                                                </tr>
+                                                <tr class="shipping">
+                                                    <th>Shipping</th>
+                                                    <td><span class="amount">&#8358;1000</span></td>
+                                                </tr>
+                                                <tr class="order-total">
+                                                    <th>Total</th>
+                                                    <td><strong><span class="amount">&#8358;[[ totalCost + 1000 ]]</span></strong></td>
+                                                </tr>
+                                            </table>
+                                            <div class="wc-proceed-to-checkout">
+                                                <a href="#" class="checkout-button button alt wc-forward">Proceed to Checkout</a>
+                                            </div>
+                                        </div>
+                                        {% if not request.user.is_authenticated %}
+                <p>continue as guest or <a href="{% url 'login'%} ">login</a> / <a href="{% url 'signup'%} ">sign up</a>
+                    {% endif %}
+
+
+            <section class="home" id="home">
+                <h3 class="home__subtitle"><br>you may also like..</h3>
+                                            
+                <div class="home__container bd-container bd-grid">
+                    <div class="home__data">
+                        <h1 class="home__title">Hot this week</h1>
+                        <h2 class="home__subtitle">Get the <br> complete electrical toolbox</h2>
+                        <a href="#" class="button">View Menu</a>
+                    </div>
+    
+                    <img src="/static/images/591-5919035_tool-box-png.png " alt="" class="home__img">
+                </div>
+            </section>
+            
+            <!--========== ABOUT ==========-->
+            <section class="about section bd-container" id="about">
+                <div class="about__container  bd-grid">
+                    <div class="about__data">
+                        <span class="section-subtitle about__initial">Exclusive product</span>
+                        <h2 class="section-title about__initial">see the all new <br> digital signage</h2>
+                        <p class="about__description">Lets capture your customers attention with our all new digital signage, now equiped with WIFI for smartphone control, We're set to deliver to you anywhere in Nigeria.</p>
+                        <a href="#" class="button">Explore Now!</a>
+                    </div>
+
+                       <img src="/static/images/500x500.png" alt="" class="about__img">
+                </div>
+            </section>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+       
+</section>
+
+
+<p v-else>Your cart is empty!</p>
+        {% else %}
+            <p>Your cart is empty!</p>
+        {% endif %}
 {% endblock %}
 
 {% block scripts %}

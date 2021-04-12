@@ -2,40 +2,67 @@
 
 {% block title %}{{ product.title }} | {% endblock %}
 {% block content %}
-<div class="col-md-12">
+ <!-- Product Details -->
 
-
+<section class="about section bd-container" id="about">
+  <section class="section product-detail">
     <div id="productapp">
-
-         <img :src=" mainImage ">
-
-         <hr>
-           <div class="col-sm" v-for="image in images">
-                    <img :src="image.thumbnail" style="float:left; border: 0.5px solid black;" @click="changeMainImage(image.image)" width="60px" height="60px">
+    <div class="details container">
+      <div class="left">
+        <div class="main">
+          <img :src=" mainImage ">
+        </div>
+        <div class="thumbnails">
+          <div class="thumbnail"v-for="image in images" >
+            <img :src="image.thumbnail" @click="changeMainImage(image.image)" width="60px" height="60px">
             
-                 </div>
-
-         <div style="clear: both;" ></div>       
-        <hr>
-        <h1 class="title"> {{ product.title }} </h1>
-        <h2 class="subtitle">&#8358;{{ product.price }}, Stars: {% if product.get_rating == 0 %}No ratings yet{% else %}{{ product.get_rating|floatformat:1 }}{% endif %}</h2>
-
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <span>Home/T-shirt</span>
+        <h1>{{ product.title }}</h1>
+        <div class="price">&#8358;{{ product.price }}, Stars: {% if product.get_rating == 0 %}No ratings yet{% else %}{{ product.get_rating|floatformat:1 }}{% endif %}</div>
+        <form>
+          <div>
+            <select>
+              <option value="Select Size" selected disabled>
+                Select Size
+              </option>
+              <option value="1">32</option>
+              <option value="2">42</option>
+              <option value="3">52</option>
+              <option value="4">62</option>
+            </select>
+            <span><i class="fas fa-chevron-down"></i></span>
+          </div>
+        </form>
+        <form class="form">
+          <input type="text" placeholder="1" />
+          <button   type="submit" class="btn btn-info product__btn"  @click="addToCart({{ product.id }})" onclick="myAlertBottom()">Add to cart</button>
+        </form>
+        <h3>Product Detail</h3>
         {% if product.description %} 
              <p>{{ product.description }}</p>
         {% endif %}
-
-        <button  class="btn btn-outline-success my-2 my-sm-0" type="submit" class="product__btn"  @click="addToCart({{ product.id }})" onclick="myAlertBottom()">Add to cart</button>
-
-<div class="myAlert-bottom alert alert-success">
+      </div>
+    </div>
+    <div class="myAlert-bottom alert alert-success">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   <strong>Yeah!</strong>Your product has been added to Cart!
 </div>
+</div>
+  </section>
+
+<section>
  <h2 class="subtitle">Related products</h2>
 
         {% with related_products as list_products %}
             {% include 'parts/product_list.html' %}
         {% endwith %}
-    </div>
+  </section>
+  
+
     <hr>
     <div class="col-md-12">
 
@@ -115,6 +142,11 @@
     </div>
   </div>
 </div>
+
+
+ </section>
+
+
 {% endblock %}
 
 {% block scripts %}
