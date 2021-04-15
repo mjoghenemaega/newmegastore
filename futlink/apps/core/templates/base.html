@@ -10,6 +10,12 @@
 		<link rel="stylesheet" href="{% static 'main.css' %}">
 
 
+
+
+<!-- jquery cdn link  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
       <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet" />
 
   <!-- Carousel -->
@@ -32,23 +38,46 @@
    <!--Font Awesome CDN-->
     <script src="https://kit.fontawesome.com/836b854fc7.js" crossorigin="anonymous"></script>
 
-    <!--========== SCROLL TOP ==========-->
-        <a href="#" class="scrolltop" id="scroll-top">
-           <i class='bx bx-up-arrow-alt scrolltop__icon'></i>
-
-        </a>
-        
 	</head>
 <body>
+
+  
         <!--========== SCROLL TOP ==========-->
+      
         <a href="#" class="scrolltop" id="scroll-top">
             <i class='bx bx-chevron-up scrolltop__icon'></i>
-        </a>
+        </a>  
+        <!--  
+        <header class="l-header" id="header"style="padding-bottom: 10px;">  
 
-        <!--========== HEADER ==========-->
-        <header class="l-header" id="header">    
-            <nav class="nav bd-container">
+            <nav class="nav bd-container"  > 
+                        <div class="nav__toggle" id="nav-toggle">
+                    <i class='bx bx-menu' style="font-size: 30px;"></i>
+              
+                </div>
+                
+                       <a href="#" class="navlogo" style="font-size: 25px; text-decoration: none;">futk</a>
+
+                        <a class="navbar-search-button search-icon-mobile" href="#">
+                          <i class='bx bx-search' style="font-size:  25px;"></i>
+                        </a>
+                        <a class="cart-icon-mobile" href="#">
+                          <i class="bx bxs-cart icon-single" style="font-size:  25px;"></i><span>0</span>
+                        </a>
+                      
+                      
+                
+             
+            
+            
+        
+                    <div class="nav__toggle" id="nav-toggle">
+                    <i class='bx bx-menu' style="font-size: 30px;"></i>
+                </div>
+
                 <a href="#" class="nav__logo"><b> Futli</b></a>
+
+
 
             <div class="nav__menu" id="nav-menu">
               <ul class="nav__list">
@@ -72,7 +101,6 @@
             </div>
                 
              {% if request.user.is_authenticated %}
-              <span><a class="btn btn-link" href="#"><i class="bx bxs-cart icon-single"></i><span class="badge badge-danger">3</span></a></span>
          <span><a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
 
@@ -85,16 +113,48 @@
         </div>
       </span>
       {% else %} 
-      <span><a class="btn btn-link" href="#"><i class="bx bxs-cart icon-single"></i><span class="badge badge-danger">3</span></a></span>
           <a class="btn btn-sm my-2 my-sm-0 btn-info"  href="{% url 'login' %}"><i class="bx bxs-user-circle mr-1"></i>LogIn</a>
     
          {% endif %}
-         <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-menu'></i>
-                </div>
-
+         
+         <div>
+           <a class="btn btn-link" href="#"><i class="bx bxs-cart icon-single" style="font-size:  25px;"></i><span class="badge badge-danger">3</span></a>
+           <a class="btn btn-link" href="#"><i class='bx bx-search'></i></a>
+         </div>
+        
             </nav>
         </header>
+      -->
+
+
+<header class="l-header" id="header">
+
+    <div id="menu" class="fas fa-bars"></div>
+
+    <a href="#" class="logo"><i class="fas fa-bone"></i>pedie</a>
+
+    <nav class="navbar bd-container">
+        <a href="#home">home</a>
+        <a href="#category">category</a>
+        <a href="#featured">featured</a>
+        <a href="#products">products</a>
+        <a href="#offer">offer</a>
+        <a href="#contact">contact</a>
+    </nav>
+
+    <div class="icons">
+        <i class="fas fa-search" id="search-icon"></i>
+        <a href="#" class="fas fa-heart"></a>
+        <a href="#" class="fas fa-shopping-cart"></a>
+    </div>
+
+    <form action="" id="search-box">
+        <input type="search" id="search" placeholder="search here">
+        <label for="search" class="fas fa-search"></label>
+    </form>
+
+</header>
+
         
 			{% block content %}
             {% endblock %}
@@ -190,9 +250,175 @@
 <!--========== SCROLL REVEAL ==========-->
         <script src="https://unpkg.com/scrollreveal"></script>
  <style>
-          
+ 
 /*===== GOOGLE FONTS =====*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+:root{
+    --yellow:#FCDD26;
+}
+
+
+
+header{
+    width:100%;
+    background:#fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    position: fixed;
+}
+
+#search-box{
+    position: absolute;
+    top:100%; left:0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background:var(--first-color);
+    padding: 0.5rem;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    transform-origin: top;
+    transform:scaleY(0);
+    opacity: 0;
+}
+
+#search-box.active{
+    transform:scaleY(1);
+    opacity: 1;
+}
+
+#search-box #search{
+    width:100%;
+    padding: 0.6rem;
+    text-transform: none;
+    font-size: 1.4rem;
+}
+
+#search-box #search::placeholder{
+    text-transform: capitalize;
+}
+
+#search-box label{
+    font-size: 1.5rem;
+    color:#333;
+    padding-left: 2rem;
+    cursor: pointer;
+}
+
+header .logo{
+    font-size: 1.5rem;
+    color:#333;
+}
+
+header .logo i{
+    transform:rotate(-65deg);
+    color:var(--yellow);
+}
+
+header .navbar a{
+    color:#333;
+    font-size: 1.3rem;
+    padding:0 1rem;
+}
+
+header .navbar a:hover{
+    color:var(--yellow);
+}
+
+header .icons i, header .icons a{
+    font-size: 1.4rem;
+    color:#333;
+    padding-left: 1.5rem;
+    cursor: pointer;
+}
+
+header .icons i:hover, header .icons a:hover{
+    color:var(--yellow);
+}
+
+.fa-times{
+    transform:rotate(-360deg);
+}
+
+
+header.sticky{
+    position: fixed;
+    top:0; left:0;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    z-index: 1000;
+}
+
+
+
+/* media queries  */
+
+@media (max-width:991px){
+
+    #menu{
+        display: block;
+    }
+
+    header .navbar{
+        position: absolute;
+        top:100%; left:0;
+        width:100%;
+        background:#fff;
+        text-align: center;
+        padding:2rem;
+        z-index: 1000;
+        border-top: .1rem solid rgba(0,0,0,.1);
+        transform-origin: top;
+        transform:scaleY(0);
+        opacity: 0;
+    }
+
+    header .navbar a{
+        font-size: 1.4rem;
+        padding:1.5rem;
+        display: block;
+    }
+
+    header .navbar.nav-toggle{
+        transform:scaleY(1);
+        opacity: 1;
+    }
+}
+
+@media (max-width:400px){
+#search-box{
+    position: absolute;
+    top:100%; left:0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background:var(--first-color);
+    padding: 0.2rem;
+    box-shadow: 0 .2rem 0.5rem rgba(0,0,0,.1);
+    transform-origin: top;
+    transform:scaleY(0);
+    opacity: 0;
+}
+
+#search-box #search{
+    width:100%;
+    padding: 0.3rem;
+    text-transform: none;
+    font-size: 0.7rem;
+}
+
+
+#search-box label{
+    font-size: 1.5rem;
+    color:#333;
+    padding-left: 1.5rem;
+    cursor: pointer;
+
+
+}
+}
+
 
 /*===== VARIABLES CSS =====*/
 :root {
@@ -234,6 +460,10 @@
   --z-fixed: 100;
 }
 
+
+
+
+
 @media screen and (min-width: 768px){
   :root{
     --biggest-font-size: 4rem;
@@ -255,7 +485,6 @@ html{
   scroll-behavior: smooth;
 }
 
-
 /*========== Variables Dark theme ==========*/
 body.dark-theme{
   --title-color: #F1F3F2;
@@ -275,7 +504,7 @@ body.dark-theme{
 }
 
 body{
-  margin: var(--header-height) 0 0 0;
+
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   background-color: var(--body-color);
@@ -336,70 +565,7 @@ img{
   gap: 1.5rem;
 }
 
-.l-header{
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: var(--z-fixed);
-  background-color: var(--body-color);
-}
 
-/*========== NAV ==========*/
-.nav{
-  max-width: 1024px;
-  height: var(--header-height);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-@media screen and (max-width: 768px){
-  .nav__menu{
-    position: fixed;
-    top: -100%;
-    left: 0;
-    width: 100%;
-    padding: 1.5rem 0 1rem;
-    text-align: center;
-    background-color: var(--body-color);
-    transition: .4s;
-    box-shadow: 0 4px 4px rgba(0,0,0,.1);
-    border-radius: 0 0 1rem 1rem;
-    z-index: var(--z-fixed);
-  }
-}
-
-.nav__item{
-  margin-bottom: var(--mb-2);
-}
-
-.nav__link, .nav__logo, .nav__toggle{
-  color: var(--text-color);
-  font-weight: var(--font-medium);
-}
-
-.nav__logo:hover{
-  color: var(--first-color);
-}
-
-.nav__link{
-  transition: .3s;
-}
-
-.nav__link:hover{
-  color: var(--first-color);
-}
-
-.nav__toggle{
-  font-size: 1.3rem;
-  cursor: pointer;
-}
-
-/* Show menu */
-.show-menu{
-  top: var(--header-height);
-}
 
 /* Active menu */
 .active-link{
@@ -686,20 +852,7 @@ img{
     padding-top: 8rem;
   }
 
-  .nav{
-    height: calc(var(--header-height) + 1.5rem);
-  }
-  .nav__list{
-    display: flex;
-  }
-  .nav__item{
-    margin-left: var(--mb-5);
-    margin-bottom: 0;
-  }
-  .nav__toggle{
-    display: none;
-  }
-
+ 
   .change-theme{
     position: initial;
     margin-left: var(--mb-2);
@@ -753,6 +906,9 @@ img{
         height: 640px;
     }
 }
+
+
+
 
         </style>
         
@@ -899,7 +1055,57 @@ sr.reveal(`.home__data, .home__img,
             .footer__content`, {
     interval: 200
 })
+   
+
           
+        </script>
+<script type="text/javascript">
+        $(document).ready(function(){
+
+  $('#search-icon').click(function(){
+    $(this).toggleClass('fa-times');
+    $('#search-box').toggleClass('active');
+  });
+
+  $('#menu').click(function(){
+    $(this).toggleClass('fa-times');
+    $('.navbar').toggleClass('nav-toggle');
+  });
+
+  $(window).on('scroll load',function(){
+
+    $('#search-icon').removeClass('fa-times');
+    $('#search-box').removeClass('active');
+
+    $('#menu').removeClass('fa-times');
+    $('.navbar').removeClass('nav-toggle');
+
+    if($(window).scrollTop() > 0){
+      $('header').addClass('sticky');
+    }else{
+      $('header').removeClass('sticky');
+    }
+
+  });
+
+  // smooth scrolling 
+
+  $('a[href*="#"]').on('click',function(e){
+
+    e.preventDefault();
+
+    $('html, body').animate({
+
+      scrollTop : $($(this).attr('href')).offset().top,
+
+    },
+      500,
+      'linear'
+    );
+
+  });
+
+});
         </script>
 
 
@@ -908,5 +1114,8 @@ sr.reveal(`.home__data, .home__img,
 
 		{% block scripts %}
 		{% endblock %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 	</body>
 </html>
